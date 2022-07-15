@@ -47,11 +47,11 @@ export default function PascalTriangle(props) {
         return pascal;
       };
 
-
+      console.log('length: '+props.length)
   return (
     <div className='pascal-triangle-container'>
         <div>
-          {pascalArr.map(arr => <Row row={arr} length={props.length} key={arr.length}/>)}
+          {(props.length === 0 || props.length === '') ? '' : pascalArr.map(arr => <Row row={arr} length={props.length} key={arr.length}/>)}
         </div>
     </div>
   )

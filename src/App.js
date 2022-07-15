@@ -1,9 +1,5 @@
 import './App.css';
-import {useEffect, useState} from 'react';
-import Row from './Row';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap';
-import PascalTriangle from './PascalTriangle';
+import {useState} from 'react';
 import MainView from './MainView';
 import Welcome from './Welcome';
 
