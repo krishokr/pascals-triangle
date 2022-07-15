@@ -2,13 +2,18 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Row from './Row';
+// const {performance} = require('perf_hooks');
 
 export default function PascalTriangle(props) {
     const [pascalArr, setPascalArr] = useState([]);
   
     useEffect(() => setPascalArr(getPascal(props.length)),[props.length]);
 
+    
+
     function getPascal(numRows) {
+        //Starts timer
+        let t0 = performance.now();
    
         let pascal = [[1]];   
         let row = [];
@@ -43,15 +48,26 @@ export default function PascalTriangle(props) {
                 numIndex += 1;
             }
         }
-      
+        
+
+        //Ends timer
+        let t1 = performance.now();
+
+        //Updates state in MainView Component with performance time.
+        props.updatePerformanceTime(t1-t0);
+
+        //Function execution is finished, so set flag to true inside MainView.
+        props.finished(true);
+
         return pascal;
       };
 
-      console.log('length: '+props.length)
+
   return (
     <div className='pascal-triangle-container'>
         <div>
-          {(props.length === 0 || props.length === '') ? '' : pascalArr.map(arr => <Row row={arr} length={props.length} key={arr.length}/>)}
+          {(props.length === 0 || props.length === '') ? '' : pascalArr.map(arr =>
+          <Row row={arr} length={props.length} key={arr.length}/>)}
         </div>
     </div>
   )
